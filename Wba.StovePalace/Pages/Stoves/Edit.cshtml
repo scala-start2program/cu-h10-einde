@@ -1,0 +1,116 @@
+﻿@page
+@model Wba.StovePalace.Pages.Stoves.EditModel
+
+@{
+    ViewData["Title"] = "Een kachel wijzigen";
+    string imagePath = "~/images/" + (Model.Stove.ImagePath ?? "noimage.jpg");
+}
+
+<h1>Een kachel wijzigen</h1>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Stove.Id" />
+            <input type="hidden" asp-for="Stove.ImagePath" />
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <td>
+                        <label asp-for="Stove.BrandId" class="control-label"></label>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <select asp-for="Stove.BrandId" class="form-control" asp-items="ViewBag.BrandId"></select>
+                            <span asp-validation-for="Stove.BrandId" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="Stove.FuelId" class="control-label"></label>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <select asp-for="Stove.FuelId" class="form-control" asp-items="ViewBag.FuelId"></select>
+                            <span asp-validation-for="Stove.FuelId" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="Stove.ModelName" class="control-label"></label>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <input asp-for="Stove.ModelName" class="form-control" />
+                            <span asp-validation-for="Stove.ModelName" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="Stove.Performance" class="control-label"></label>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <input asp-for="Stove.Performance" class="form-control" />
+                            <span asp-validation-for="Stove.Performance" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="Stove.SalesPrice" class="control-label"></label>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <input asp-for="Stove.SalesPrice" class="form-control" lang="nl" />
+                            <span asp-validation-for="Stove.SalesPrice" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="PhotoUpload" class="control-label"></label>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <div class="custom-file">
+                                <input asp-for="PhotoUpload" class="custom-file-input form-control" />
+                                <label class="custom-file-label">Klik hier om foto te wijzigen</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group row col-sm-4 offset-4">
+                            <img class="imageThumbnail" src="@imagePath" asp-append-version="true" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+
+
+
+
+
+
+            <hr />
+            <div class="form-group">
+                <div class="btn-group">
+                    <button type="submit" class="btn  btn-success" title="Opslaan">
+                        <i class="far fa-save"></i>
+                    </button>
+                    <a asp-page="Index" class="btn btn-danger" title="Annuleren">
+                        <i class="fas fa-undo-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@*@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@

@@ -1,0 +1,57 @@
+﻿@page
+@model Wba.StovePalace.Pages.Stoves.DetailsModel
+
+@{
+    ViewData["Title"] = "Detail kachel";
+    string imagePath = "~/images/" + (Model.Stove.ImagePath ?? "noimage.jpg");
+}
+
+<h1>@Html.DisplayFor(model => model.Stove.Brand.BrandName)</h1>
+<h2>@Html.DisplayFor(model => model.Stove.ModelName)</h2>
+<hr />
+<div class="btn-group">
+    <a asp-page="./Details" asp-route-id="@Model.PreviousId" class="btn btn-light">&lt; Vorige</a>
+    <a asp-page="./Index" class="btn btn-light">
+        Terug naar overzicht
+    </a>
+    <a asp-page="./Details" asp-route-id="@Model.NextId" class="btn btn-light">Volgende &gt;</a>
+</div>
+<hr />
+
+<div class="row">
+    <div class="col-6">
+        <img class="img-fluid" src="@imagePath" asp-append-version="true" />
+    </div>
+    <div class="col-6">
+        <dl class="row">
+            <dt class="col-sm-2 text-secondary">
+                @Html.DisplayNameFor(model => model.Stove.Fuel)
+            </dt>
+            <dd class="col-sm-10 h3">
+                @Html.DisplayFor(model => model.Stove.Fuel.FuelName)
+            </dd>
+            <dt class="col-sm-2 text-secondary">
+                @Html.DisplayNameFor(model => model.Stove.Performance)
+            </dt>
+            <dd class="col-sm-10 h3">
+                @Html.DisplayFor(model => model.Stove.Performance)
+            </dd>
+            <dt class="col-sm-2 text-secondary">
+                @Html.DisplayNameFor(model => model.Stove.SalesPrice)
+            </dt>
+            <dd class="col-sm-10 h3">
+                @Html.DisplayFor(model => model.Stove.SalesPrice)
+            </dd>
+        </dl>
+
+    </div>
+</div>
+<hr />
+<div>
+    <div class="btn-group">
+        <a style="@Model.Availability.ConfigButtonStyle" asp-page="./Edit" asp-route-id="@Model.Stove.Id" class="btn  btn-warning" title="Wijzigen">
+            <i class="fas fa-pencil-alt"></i>
+        </a>
+
+    </div>
+</div>
